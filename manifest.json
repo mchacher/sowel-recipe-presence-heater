@@ -1,0 +1,17 @@
+{
+  "id": "presence-heater",
+  "type": "recipe",
+  "name": "Presence Heater",
+  "version": "1.0.0",
+  "description": "Switches electric heaters to comfort on motion, eco after absence timeout",
+  "icon": "Heater",
+  "repo": "mchacher/sowel-recipe-presence-heater",
+  "author": "mchacher",
+  "tags": ["automation", "heating", "presence", "heater"],
+  "i18n": {
+    "fr": {
+      "name": "Chauffage présence",
+      "description": "Passe les radiateurs en confort sur détection de mouvement, éco après un délai sans présence."
+    }
+  }
+}

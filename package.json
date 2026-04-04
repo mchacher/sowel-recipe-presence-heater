@@ -1,0 +1,16 @@
+{
+  "name": "sowel-recipe-presence-heater",
+  "version": "1.0.0",
+  "description": "Sowel recipe: Presence Heater — switches electric heaters to comfort on motion, eco after absence timeout",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
+  },
+  "license": "AGPL-3.0"
+}
