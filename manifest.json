@@ -7,11 +7,17 @@
   "icon": "Heater",
   "repo": "mchacher/sowel-recipe-presence-heater",
   "author": "mchacher",
-  "tags": ["automation", "heating", "presence", "heater"],
+  "tags": [
+    "automation",
+    "heating",
+    "presence",
+    "heater"
+  ],
   "i18n": {
     "fr": {
       "name": "Chauffage présence",
       "description": "Passe les radiateurs en confort sur détection de mouvement, éco après un délai sans présence."
     }
-  }
+  },
+  "sowelVersion": ">=0.10.0"
 }
