@@ -15,11 +15,6 @@ interface RecipeContext {
       dataBindings: Array<{ alias: string }>;
       orderBindings: Array<{ alias: string; enumValues?: string[] }>;
     } | null;
-    executeOrder(
-      equipmentId: string,
-      alias: string,
-      value: unknown,
-    ): Promise<{ success: boolean; error?: string }>;
   };
   zoneManager: {
     getById(id: string): { id: string; name: string } | null;
@@ -40,6 +35,13 @@ interface RecipeContext {
     clear(): void;
   };
   log: (message: string, level?: "info" | "warn" | "error") => void;
+  // Spec 101 — dispatches an order attributed to this recipe instance, so the
+  // activity feed names the recipe as its source.
+  dispatchOrder(
+    equipmentId: string,
+    alias: string,
+    value: unknown,
+  ): Promise<{ success: boolean; error?: string }>;
   helpers: {
     parseDuration(value: unknown): number;
     formatDuration(ms: number): string;
@@ -417,8 +419,8 @@ export function createRecipe(): RecipeDefinition {
         stateGraceUntil = Date.now() + 5000;
         const comfortValue = "off" as const;
         for (const heaterId of heaterIds) {
-          ctx.equipmentManager
-            .executeOrder(heaterId, "state", resolveEnumValue(heaterId, comfortValue))
+          ctx
+            .dispatchOrder(heaterId, "state", resolveEnumValue(heaterId, comfortValue))
             .then((r) => {
               if (!r.success) ctx.log(`Heater ${heaterId} comfort FAILED: ${r.error}`, "error");
             })
@@ -437,8 +439,8 @@ export function createRecipe(): RecipeDefinition {
         stateGraceUntil = Date.now() + 5000;
         const ecoValue = "on" as const;
         for (const heaterId of heaterIds) {
-          ctx.equipmentManager
-            .executeOrder(heaterId, "state", resolveEnumValue(heaterId, ecoValue))
+          ctx
+            .dispatchOrder(heaterId, "state", resolveEnumValue(heaterId, ecoValue))
             .then((r) => {
               if (!r.success) ctx.log(`Heater ${heaterId} eco FAILED: ${r.error}`, "error");
             })
